@@ -1,351 +1,233 @@
-
 {
   "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "height": 28,
-  "modules-left": [
-    "custom/omarchy",
-    "hyprland/workspaces",
-    "custom/separator",
-    "hyprland/window",
-    "custom/separator",
-    "custom/git",
-  ///  "custom/docker",
-    "custom/ssh"
-  ],
-  "modules-center": [
-    "custom/media",
-    "custom/separator-dot",
-    "clock",
-    "custom/separator-dot",
-    "clock#date",
-    "custom/separator-dot",
-    "custom/update",
-    "custom/screenrecording-indicator"
-  ],
+  "height": 26,
+  "modules-left": ["custom/omarchy", "hyprland/workspaces"],
+  "modules-center": ["clock", "custom/weather", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator"],
   "modules-right": [
-   //// "custom/waybar_pets",
-    "idle_inhibitor",
-    "custom/separator",
-    "keyboard-state",
-    "group/system-stats",
-    "custom/separator",
-    "group/tray-expander",
+    "custom/media",
+    "custom/cava",
+    "custom/docker",
+    "custom/tailscale",
+    "custom/gpu",
+    "memory",
+    "cpu",
+    "tray",
     "bluetooth",
     "network",
     "pulseaudio",
     "battery"
   ],
-
-  "custom/waybar_pets":{
-    "exec":"python3 /home/sparch/Dev-stuff/projects/Bits/scripts/waybar_pets.py",
-  "return-type":"json"
-  },
-
-  "custom/media": {
-  "format": "{icon} {text}",
-  "return-type": "json",
-  "max-length": 40,
-  "format-icons": {
-    "spotify": "",
-    "firefox": "󰈹",
-    "chromium": "",
-    "default": "🎵"
-  },
-  "escape": true,
-  "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
-  "on-click": "playerctl play-pause",
-  "on-click-right": "playerctl next",
-  "on-scroll-up": "playerctl previous",
-  "on-scroll-down": "playerctl next"
-},
-
-  "custom/docker": {
-  "format": " {text}",
-  "exec": "$HOME/.config/waybar/scripts/docker-status.sh",
-  "interval": 10,
-  "return-type": "json",
-  "on-click": "xdg-terminal-exec --class=docker-manager -e lazydocker",
-  "on-click-right": "xdg-terminal-exec docker stats"
-},
-
-
-  "custom/git": {
-  "format": "{icon} {text}",
-  "return-type": "json",
-  "interval": 5,
-  "exec": "$HOME/.config/waybar/scripts/git-status.sh",
-  "on-click": "xdg-terminal-exec lazygit",
-  "format-icons": {
-    "default": "",
-    "ahead": "󰜷",
-    "dirty": "",
-    "clean": ""
-  }
-},
-
-
-"custom/ssh": {
-  "format": "{icon} {text}",
-  "return-type": "json",
-  "exec": "$HOME/.config/waybar/scripts/ssh-monitor.sh",
-  "interval": 3,
-  "on-click": "$HOME/.config/waybar/scripts/ssh-details.sh",
-  "on-click-right": "xdg-terminal-exec --class=ssh-manager -e bash -c 'ss -tnp | grep ssh | grep ESTAB; echo; read -p \"Press Enter to close...\"'",
-  "format-icons": {
-    "connected": "󰣀",
-    "multiple": "󰒍",
-    "none": "󰿆"
-  }
-},
-
-  "custom/pomodoro": {
-  "format": "{icon} {text}",
-  "return-type": "json",
-  "exec": "$HOME/.config/waybar/scripts/pomodoro.sh status",
-  "on-click": "$HOME/.config/waybar/scripts/pomodoro.sh toggle",
-  "on-click-right": "$HOME/.config/waybar/scripts/pomodoro.sh reset",
-  "interval": 1,
-  "format-icons": {
-    "work": "󰔟",
-    "break": "",
-    "idle": "󱫈"
-  }
-},
-
-  "custom/postgres": {
-  "format": "󰆼 {text}",
-  "exec": "$HOME/.config/waybar/scripts/postgres-status.sh",
-  "interval": 30,
-  "return-type": "json",
-  "on-click": "pgadmin4"
-},
-
-
-
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      "1": "󰲠",
-      "2": "󰲢",
-      "3": "󰲤",
-      "4": "󰲦",
-      "5": "󰲨",
-      "urgent": "",
-      "active": "󱓻",
-      "default": "󰝥"
+      "default": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0",
+      "active": "\udb81\udcfb"
     },
     "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
-    },
-    "all-outputs": true,
-    "show-special": false
-  },
-
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 50,
-    "separate-outputs": true,
-    "rewrite": {
-      "(.*) — Mozilla Firefox": "󰈹 $1",
-      "(.*) - Visual Studio Code": "󰨞 $1",
-      "(.*) - nvim": " $1",
-      "(.*) - vim": " $1",
-      "(.*)kitty": " $1",
-      "(.*)btop": "󰍛 System Monitor"
+      "5": []
     }
   },
-
-  "hyprland/submap": {
-    "format": "<span style=\"italic\"> {}</span>",
-    "max-length": 20,
-    "tooltip": false
-  },
-
   "custom/omarchy": {
     "format": "<span font='omarchy'>\ue900</span>",
     "on-click": "omarchy-menu",
     "on-click-right": "xdg-terminal-exec",
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
   },
-
   "custom/update": {
-    "format": "{}",
+    "format": "",
     "exec": "omarchy-update-available",
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
     "signal": 7,
-    "interval": 3600
+    "interval": 21600
   },
 
-  "group/system-stats": {
-    "orientation": "inherit",
-    "modules": ["cpu", "memory", "temperature", "disk"]
+  "custom/media": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/media.sh",
+    "interval": 2,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+    "max-length": 32
   },
-
-  "cpu": {
+  "custom/cava": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/cava.sh",
+    "restart-interval": 1,
+    "tooltip": false
+  },
+  "custom/docker": {
+    "format": "\udb82\udc68 {}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/docker.sh",
+    "interval": 5,
+    "on-click": "omarchy-launch-or-focus-tui lazydocker",
+    "on-click-right": "alacritty -e docker ps"
+  },
+  "custom/tailscale": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/tailscale.sh",
+    "interval": 5,
+    "on-click": "omarchy-launch-floating-terminal-with-presentation tailscale status",
+    "on-click-right": "notify-send -u low \"$(tailscale status 2>/dev/null | head -n 20)\""
+  },
+  "custom/gpu": {
+    "format": "\udb82\udc2e {}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/gpu.sh",
     "interval": 3,
-    "format": "󰍛 {usage}%",
-    "on-click": "omarchy-launch-or-focus-tui btop",
-    "tooltip-format": "CPU: {usage}%\nAvg Load: {load}"
+    "on-click": "omarchy-launch-or-focus-tui nvtop"
   },
-
   "memory": {
+    "format": "\udb83\udd86 {percentage}%",
     "interval": 5,
-    "format": " {}%",
-    "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G",
-    "on-click": "omarchy-launch-or-focus-tui btop"
-  },
-
-  "temperature": {
-    "interval": 5,
-    "format": "{icon} {temperatureC}°",
-    "format-icons": ["", "", "", "", ""],
-    "tooltip-format": "Temperature: {temperatureC}°C",
-    "critical-threshold": 80,
-    "on-click": "omarchy-launch-or-focus-tui btop"
-  },
-
-  "disk": {
-    "interval": 30,
-    "format": "󰋊 {percentage_used}%",
-    "path": "/",
-    "tooltip-format": "Used: {used} / {total}\nFree: {free} ({percentage_free}%)",
-    "on-click": "omarchy-launch-or-focus-tui btop"
+    "tooltip-format": "RAM {used:0.1f}G / {total:0.1f}G  ({percentage}%)\nSwap {swapUsed:0.1f}G / {swapTotal:0.1f}G",
+    "on-click": "omarchy-launch-or-focus-tui btop",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    }
   },
 
   "clock": {
-    "format": "󰥔 {:%H:%M:%S}",
+    "format": "{:L%A %H:%M}",
+    "format-alt": "{:L%d %B W%V %Y}",
     "tooltip": false,
-    "interval": 1
-  },
-
-  "clock#date": {
-    "format": "{:%a %d %b}",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
     "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
   },
-
-  "network": {
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "format": "{icon}",
-    "format-wifi": "{icon} {signalStrength}%",
-    "format-ethernet": "󰀂",
-    "format-disconnected": "󰤮",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\nSignal: {signalStrength}%\n󰕒 {bandwidthDownBytes}  󰕤 {bandwidthUpBytes}",
-    "tooltip-format-ethernet": "󰕒 {bandwidthDownBytes}  󰕤 {bandwidthUpBytes}\nIP: {ipaddr}",
-    "tooltip-format-disconnected": "Disconnected",
-    "interval": 3,
-    "on-click": "omarchy-launch-wifi"
+  "custom/weather": {
+    "exec": "$OMARCHY_PATH/default/waybar/weather.sh",
+    "return-type": "json",
+    "interval": 60,
+    "tooltip": false,
+    "on-click": "notify-send -u low \"$(omarchy-weather-status)\""
   },
-
+  "network": {
+  "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+  "format": "{icon}",
+  "format-wifi": "{icon}",
+  "format-ethernet": "󰈀",
+  "format-disconnected": "󰤮",
+  "format-disabled": "󰀝",
+  "tooltip-format-wifi": "{essid}  ({signalStrength}%)\n{ipaddr}\n{frequency} GHz",
+  "tooltip-format-ethernet": "{ifname}\n{ipaddr}\nConnected",
+  "tooltip-format-disconnected": "Disconnected",
+  "interval": 3,
+  "spacing": 1,
+  "on-click": "omarchy-launch-wifi"
+},
   "battery": {
-    "format": "{icon} {capacity}%",
-    "format-discharging": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": " {capacity}%",
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "",
     "format-icons": {
-      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+      "charging": ["\udb83\udc9c", "\udb80\udc86", "\udb80\udc87", "\udb80\udc88", "\udb83\udc9d", "\udb80\udc89", "\udb83\udc9e", "\udb80\udc8a", "\udb80\udc8b", "\udb80\udc85"],
+      "default": ["\udb80\udc7a", "\udb80\udc7b", "\udb80\udc7c", "\udb80\udc7d", "\udb80\udc7e", "\udb80\udc7f", "\udb80\udc80", "\udb80\udc81", "\udb80\udc82", "\udb80\udc79"]
     },
-    "format-full": "󰂅",
-    "tooltip-format-discharging": "Power: {power:>1.0f}W ↓\nCapacity: {capacity}%\nTime: {time}",
-    "tooltip-format-charging": "Power: {power:>1.0f}W ↑\nCapacity: {capacity}%\nTime: {time}",
+    "format-full": "\udb80\udc85",
+    "tooltip-format-discharging": "{power:>1.0f}W\u2193 {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W\u2191 {capacity}%",
     "interval": 5,
     "on-click": "omarchy-menu power",
+    "on-click-right": "notify-send -u low \"$(omarchy-battery-status)\"",
     "states": {
-      "warning": 30,
-      "critical": 15
+      "warning": 20,
+      "critical": 10
     }
   },
-
   "bluetooth": {
-    "format": "󰂯",
-    "format-disabled": "󰂲",
-    "format-off": "󰂲",
-    "format-connected": "󰂱 {num_connections}",
-    "tooltip-format": "{status}\n{num_connections} device(s) connected",
-    "tooltip-format-connected": "{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}",
+    "format": "",
+    "format-off": "\udb80\udc8b2",
+    "format-disabled": "\udb80\udc8b2",
+    "format-connected": "\udb80\udc8b1",
+    "format-no-controller": "",
+    "tooltip-format": "Devices connected: {num_connections}",
     "on-click": "omarchy-launch-bluetooth"
   },
-
   "pulseaudio": {
-    "format": "{icon} {volume}%",
-    "format-muted": "󰖁",
-    "on-click": "omarchy-launch-or-focus-tui wiremix",
-    "on-click-right": "pamixer -t",
-    "tooltip-format": "{desc}\nVolume: {volume}%",
-    "scroll-step": 5,
-    "format-icons": {
-      "default": ["󰕿", "󰖀", "󰕾"]
-    }
-  },
-
-  "idle_inhibitor": {
     "format": "{icon}",
+    "on-click": "omarchy-launch-floating-terminal-with-presentation wiremix",
+    "on-click-right": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "tooltip-format": "Volume {volume}%\nClick: wiremix (select I/O devices)\nRight-click: mute  |  Scroll: volume",
+    "scroll-step": 5,
+    "format-muted": "\udb81\udd81",
     "format-icons": {
-      "activated": "󰅶",
-      "deactivated": "󰾪"
-    },
-    "tooltip-format-activated": "Idle inhibitor: ON\n(Prevents screen from sleeping)",
-    "tooltip-format-deactivated": "Idle inhibitor: OFF"
-  },
-
-  "keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": {
-      "numlock": "N {icon}",
-      "capslock": "󰪛 {icon}"
-    },
-    "format-icons": {
-      "locked": "",
-      "unlocked": ""
+      "headphone": "\udb81\udca1",
+      "headset": "\udb81\udcdd",
+      "default": ["\udb81\udd7f", "\udb81\udd80", "\udb81\udd7e"]
     }
   },
-
-  "group/tray-expander": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 400,
-      "transition-left-to-right": false,
-      "children-class": "tray-group-item"
-    },
-    "modules": ["custom/expand-icon", "tray"]
-  },
-
-  "custom/expand-icon": {
-    "format": " ",
-    "tooltip": false
-  },
-
-  "custom/separator": {
-    "format": "|",
-    "tooltip": false
-  },
-
-  "custom/separator-dot": {
-    "format": "•",
-    "tooltip": false
-  },
-
   "custom/screenrecording-indicator": {
-    "on-click": "omarchy-cmd-screenrecord",
+    "on-click": "omarchy-capture-screenrecording",
     "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
     "signal": 8,
     "return-type": "json"
   },
-
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy-toggle-notification-silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "\udb81\udf6c",
+      "transcribing": "\udb81\udd1f"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
+  },
+  "cpu": {
+  "interval": 2,
+  "format": "󰍛 {usage}%",
+  "tooltip-format": "CPU {usage}%  |  load {load}",
+  "on-click": "omarchy-launch-or-focus-tui btop",
+  "states": {
+    "warning": 70,
+    "critical": 90
+    }
+  },
   "tray": {
     "icon-size": 14,
-    "spacing": 10
+    "spacing": 12,
+    "show-passive-items": true
   }
 }
